@@ -22,18 +22,19 @@ book_borrow_status CHAR(1) NOT NULL COMMENT '대여 가능 상태; y/n'
 
 CREATE TABLE IF NOT EXISTS lb_member(
 mb_id int AUTO_INCREMENT COMMENT '회원ID' ,
-mb_name VARCHAR(100) NOT NULL COMMENT '회원PRIMARY KEY이름',
+mb_name VARCHAR(100) NOT NULL COMMENT '회원이름',
 mb_email VARCHAR(100) NOT NULL COMMENT'회원이메일',
 mb_phone VARCHAR(100) NOT NULL COMMENT '연락처',
+ mb_date DATE NOT NULL COMMENT '대여일',
 PRIMARY KEY (mb_id)
 )ENGINE=InnoDB comment '회원정보'; 
 
 
 CREATE TABLE IF NOT EXISTS lb_reviews (
 review_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '리뷰ID',
-mb_id INT NOT NULL COMMENT '회원ID', -- Changed to INT to match lb_member table
+mb_id INT NOT NULL COMMENT '회원ID', -- Corrected data type and removed AUTO_INCREMENT
 book_id INT NOT NULL COMMENT '책ID',
-content TEXT NOT NULL COMMENT '내용',
+content VARCHAR(30) NOT NULL COMMENT '내용',
 rating INT UNSIGNED NOT NULL CHECK (rating >= 0 AND rating <= 5) COMMENT '평점',
 created_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
 FOREIGN KEY (mb_id) REFERENCES lb_member(mb_id),
@@ -50,8 +51,15 @@ rental_return DATE NOT NULL COMMENT'반납일',
 book_borrow_status CHAR(1) NOT NULL COMMENT '대여가능상태; y/n',
 PRIMARY KEY (rental_id),
 FOREIGN KEY (mb_id) REFERENCES lb_member(mb_id),
-FOREIGN KEY (book_id) REFERENCES lb_book(book_id)
+FOREIGN KEY (book_id) REFERENCES lb_book(book_id),
+FOREIGN KEY (book_borrow_status) REFERENCES lb_book(book_borrow_status)
 ) ENGINE=INNODB COMMENT '대여정보';
+
+INSERT INTO lb_book VALUES (null, 'test', 'johnsmith', '황금가지', '2021-03-01', 12345, 'novel', 'Y');
+SELECT * FROM lb_book;
+
+INSERT into lb_member VALUES (null,'user01','songpa@naver.com','010-3333-333',date(now()));
+SELECT * FROM lb_member;
 
 
 COMMIT;
