@@ -72,6 +72,8 @@ INSERT into lb_member VALUES
 INSERT INTO lb_reviews VALUES(null, 01 ,'해리포터1','good','5',date(now()));
 INSERT INTO lb_reviews VALUES(null, 02 ,'해리포터2','good!!','5',date(now()));
 INSERT INTO lb_reviews VALUES(null, 03 ,'해리포터3','not bad..!','4',date(now()));
+INSERT INTO lb_reviews VALUES(null, 04 ,'해리포터4','perfect','5',date(now()));
+INSERT INTO lb_reviews VALUES(null, 05 ,'해리포터5','incredible!!','5',date(now()));
 
 INSERT INTO lb_rental VALUES (null, 01, 5678, '인어공주', DATE(now()),ADDDATE(DATE(NOW()), INTERVAL 15 DAY),'Y');
 INSERT INTO lb_rental VALUES (null, 02, 1542, '백설공주', DATE(now()),ADDDATE(DATE(NOW()), INTERVAL 15 DAY),'Y');
