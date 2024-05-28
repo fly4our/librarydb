@@ -36,12 +36,12 @@ PRIMARY KEY (mb_id)
 
 CREATE TABLE IF NOT EXISTS lb_reviews (
 review_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '리뷰ID',
-ref_mb_id INT NOT NULL COMMENT '회원ID',
+mb_id INT NOT NULL COMMENT '회원ID',
 book_title VARCHAR(100) NOT NULL COMMENT '제목',
 content VARCHAR(30) NOT NULL COMMENT '내용',
 rating INT UNSIGNED NOT NULL CHECK (rating >= 0 AND rating <= 5) COMMENT '평점',
 created_date DATE NOT NULL COMMENT '작성일',
-FOREIGN KEY (ref_mb_id) REFERENCES lb_member(mb_id)
+FOREIGN KEY (mb_id) REFERENCES lb_member(mb_id)
 ) ENGINE=INNODB COMMENT '리뷰관리';
 
 
@@ -67,7 +67,9 @@ INSERT INTO lb_book VALUES
 INSERT into lb_member VALUES 
 (NULL,'user01','songpa@naver.com','010-3333-333',date(now())),
 (null,'user02','songpa@daum.net','010-2222,222',date(now())),
-(NULL,'user03','songpa@gmail.com','010-1111-111',date(now()));
+(NULL,'user03','songpa@gmail.com','010-1111-111',date(now())),
+(NULL,'user04','songpa@git.hub','010-4444-444',date(now())),
+(NULL,'user05','songpa@notion.com','010-5555-555',date(now()));
 
 INSERT INTO lb_reviews VALUES(null, 01 ,'해리포터1','good','5',date(now()));
 INSERT INTO lb_reviews VALUES(null, 02 ,'해리포터2','good!!','5',date(now()));
